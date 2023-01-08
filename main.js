@@ -1,91 +1,124 @@
+const addBtn = document.querySelector('.add')
+const benchPress = document.querySelector('.benchPress')
+const squat = document.querySelector('.squat')
+const deadlift = document.querySelector('.deadlift')
+const inputWeight = document.querySelector('.inputWeight')
+const inputName = document.querySelector('.name')
+const wyniki = document.querySelector('.wyniki')
+
+
+const lifters = []
 const tablica = [25, 20, 15, 10, 5, 2.5, 1.25];
 const waga = [];
-let weight = 105;
-const netWeight = weight - 20;
+let idCounter = 0
+let weight = 0
+
 
 const pomnożonaTablica = tablica.map(el => el * 2)
 
-console.log(pomnożonaTablica)
-const number1 = pomnożonaTablica[0]
-const number2 = pomnożonaTablica[1]
-const number3 = pomnożonaTablica[2]
-const number4 = pomnożonaTablica[3]
-const number5 = pomnożonaTablica[4]
-const number6 = pomnożonaTablica[5]
-const number7 = pomnożonaTablica[6]
 
-i = netWeight
-let result = 0;
-let wynik2 = 0
-let wynik3 = 0
-let wynik4 = 0
-let wynik5 = 0
-let wynik6 = 0
-let wynik7 = 0
-
-while (i >= 49) {
-
-    i = i - number1
-    result += 2
-}
-
-waga.push(result)
+const tablica1 = pomnożonaTablica[0]
+const tablica2 = pomnożonaTablica[1]
+const tablica3 = pomnożonaTablica[2]
+const tablica4 = pomnożonaTablica[3]
+const tablica5 = pomnożonaTablica[4]
+const tablica6 = pomnożonaTablica[5]
+const tablica7 = pomnożonaTablica[6]
 
 
-if (i <= 50) {
-    while (i >= 40) {
-        i = i - number2
-        wynik2 += 2
+
+
+
+addBtn.addEventListener('click', () => {
+    if (inputWeight.value < 20) {
+        alert("!Wypierdalaj")
+        inputWeight.value = ''
+        return
+    } else if (inputWeight.value === 20) {
+        console.log("pracuj sama sztanga")
+    } else if (inputWeight.value > 20) {
+        weight = inputWeight.value - 20
+        console.log(weight)
+    }
+    idCounter++
+    const newLifter = {
+        id: idCounter,
+        Name: inputName.value,
+        squat: squat.value,
+        benchPress: benchPress.value,
+        deadlift: deadlift.value,
+        Score: inputWeight.value
 
     }
-    waga.push(wynik2)
-}
-if (i <= 40) {
-    while (i >= 30) {
+    lifters.push(newLifter)
 
-        i = i - number3
-        wynik3 += 2
+    obliczenia()
 
+})
+
+const obliczenia = () => {
+    let result1 = 0
+    let result2 = 0
+    let result3 = 0
+    let result4 = 0
+    let result5 = 0
+    let result6 = 0
+    let result7 = 0
+    if (weight > 0) {
+        while (weight >= tablica1) {
+            weight = weight - tablica1
+            result1 += 2
+        }
+        waga.push(result1)
+
+        while (weight >= tablica2) {
+
+            weight = weight - tablica2
+            result2 += 2
+        }
+
+        while (weight >= tablica3) {
+
+            weight = weight - tablica3
+            result3 += 2
+        }
+        while (weight >= tablica4) {
+
+            weight = weight - tablica4
+            result4 += 2
+        }
+        while (weight >= tablica5) {
+
+            weight = weight - tablica5
+            result5 += 2
+        }
+        while (weight >= tablica6) {
+
+            weight = weight - tablica6
+            result6 += 2
+        }
+        while (weight >= tablica7) {
+
+            weight = weight - tablica7
+            result7 += 2
+        }
     }
-    waga.push(wynik3)
+    const jeden = document.querySelector('.jeden')
+    const dwa = document.querySelector('.dwa')
+    const trzy = document.querySelector('.trzy')
+    const cztery = document.querySelector('.cztery')
+    const piec = document.querySelector('.piec')
+    const szesc = document.querySelector('.szesc')
+    const siedem = document.querySelector('.siedem')
+
+    jeden.innerHTML = result1
+    dwa.innerHTML = result2
+    trzy.innerHTML = result3
+    cztery.innerHTML = result4
+    piec.innerHTML = result5
+    szesc.innerHTML = result6
+    siedem.innerHTML = result7
+
+    console.log(result1, result2, result3, result4, result5, result6, result7, weight)
+
 }
-if (i <= 30) {
-    while (i >= 20) {
-        wynik4 += 2
-        i = i - number4
-
-    }
-    waga.push(wynik4)
-}
-if (i <= 20) {
-    while (i >= 10) {
-        wynik5 += 2
-        i = i - number5
-
-    }
-    waga.push(wynik5)
-}
-if (i <= 10) {
-    while (i >= 5) {
-        wynik6 += 2
-        i = i - number6
-
-    }
-    waga.push(wynik6)
-}
-if (i <= 2.5) {
-    while (i >= 1.25) {
-        wynik7 += 2
-        i = i - number7
-
-    }
-    waga.push(wynik7)
-}
-
-// } else if (i <= 0) {
-//     alert("!wypierdalaj")
-
-
-//     console.log(waga)
-console.log(result, wynik2, wynik3, wynik4, wynik5, wynik6, wynik7)
-console.log(i)
