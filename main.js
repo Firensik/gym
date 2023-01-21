@@ -1,124 +1,195 @@
 const addBtn = document.querySelector('.add')
-const benchPress = document.querySelector('.benchPress')
-const squat = document.querySelector('.squat')
-const deadlift = document.querySelector('.deadlift')
-const inputWeight = document.querySelector('.inputWeight')
-const inputName = document.querySelector('.name')
+const name = document.querySelector('.name')
+const inputWeight = document.querySelector('.weight')
+const ring25 = document.querySelector('.ring25')
+const ring20 = document.querySelector('.ring20')
+const ring15 = document.querySelector('.ring15')
+const ring10 = document.querySelector('.ring10')
+const ring5 = document.querySelector('.ring5')
+const ring250 = document.querySelector('.ring250')
+const ring125 = document.querySelector('.ring125')
+
 const wyniki = document.querySelector('.wyniki')
 
+const jeden = document.querySelector("jeden")
 
-const lifters = []
-const tablica = [25, 20, 15, 10, 5, 2.5, 1.25];
+
 const waga = [];
-let idCounter = 0
-let weight = 0
+let weight = 0;
 
 
-const pomnożonaTablica = tablica.map(el => el * 2)
-
-
-const tablica1 = pomnożonaTablica[0]
-const tablica2 = pomnożonaTablica[1]
-const tablica3 = pomnożonaTablica[2]
-const tablica4 = pomnożonaTablica[3]
-const tablica5 = pomnożonaTablica[4]
-const tablica6 = pomnożonaTablica[5]
-const tablica7 = pomnożonaTablica[6]
-
+let rings = []
 
 
 
 
 addBtn.addEventListener('click', () => {
-    if (inputWeight.value < 20) {
-        alert("!Wypierdalaj")
-        inputWeight.value = ''
-        return
-    } else if (inputWeight.value === 20) {
-        console.log("pracuj sama sztanga")
-    } else if (inputWeight.value > 20) {
-        weight = inputWeight.value - 20
-        console.log(weight)
-    }
-    idCounter++
-    const newLifter = {
-        id: idCounter,
-        Name: inputName.value,
-        squat: squat.value,
-        benchPress: benchPress.value,
-        deadlift: deadlift.value,
-        Score: inputWeight.value
+    rings.length = 0
 
+    // idCounter++
+    weight = inputWeight.value
+    console.log(weight)
+
+    const objectWeight1 = {
+        id: 25,
+        quality: ring25.value
     }
-    lifters.push(newLifter)
+
+    const objectWeight2 = {
+        id: 20,
+        quality: ring20.value,
+    }
+    const objectWeight3 = {
+        id: 15,
+        quality: ring15.value,
+    }
+    const objectWeight4 = {
+        id: 10,
+        quality: ring10.value,
+    }
+    const objectWeight5 = {
+        id: 5,
+        quality: ring5.value,
+    }
+    const objectWeight6 = {
+        id: 2.5,
+        quality: ring250.value,
+    }
+    const objectWeight7 = {
+        id: 1.25,
+        quality: ring125.value
+    }
+    rings.push(objectWeight1, objectWeight2, objectWeight3, objectWeight4, objectWeight5, objectWeight6, objectWeight7)
+
+    // if (inputBar.value === "") {
+    //     alert("Sztanga ma przypisany ciezar 20kg")
+    // } else(weightBar = inputBar.value)
+    // console.log(weightBar)
+
+    // console.log(doubleRings)
 
     obliczenia()
 
+
 })
 
+
 const obliczenia = () => {
-    let result1 = 0
-    let result2 = 0
-    let result3 = 0
-    let result4 = 0
-    let result5 = 0
-    let result6 = 0
-    let result7 = 0
-    if (weight > 0) {
-        while (weight >= tablica1) {
-            weight = weight - tablica1
-            result1 += 2
+
+    weight -= bar
+
+    console.log(weight)
+    const doubleRings = rings.map(function (element) {
+        return `${element.id}` * 2
+    })
+
+    if (inputWeight.value === '') {
+        return alert("Podaj wartosc")
+    } else {
+
+        let quality25 = ring25.value
+        let quality20 = ring20.value
+        let quality15 = ring15.value
+        let quality10 = ring10.value
+        let quality5 = ring5.value
+        let quality250 = ring250.value
+        let quality125 = ring125.value
+
+        let result1 = 0
+        let result2 = 0
+        let result3 = 0
+        let result4 = 0
+        let result5 = 0
+        let result6 = 0
+        let result7 = 0
+
+        if (weight > 0) {
+            while (weight >= doubleRings[0] && quality25 >= 2) {
+                weight = weight - doubleRings[0]
+                quality25 -= 2
+                result1 += 2
+            }
+            waga.push(result1)
+
+
+            while (weight >= doubleRings[1] && quality20 >= 2) {
+
+                weight = weight - doubleRings[1]
+                quality20 -= 2
+                result2 += 2
+            }
+            waga.push(result2)
+
+            while (weight >= doubleRings[2] && quality15 >= 2) {
+
+                weight = weight - doubleRings[2]
+                quality15 -= 2
+                result3 += 2
+            }
+            waga.push(result3)
         }
-        waga.push(result1)
 
-        while (weight >= tablica2) {
+        while (weight >= doubleRings[3] && quality10 >= 2) {
 
-            weight = weight - tablica2
-            result2 += 2
-        }
-
-        while (weight >= tablica3) {
-
-            weight = weight - tablica3
-            result3 += 2
-        }
-        while (weight >= tablica4) {
-
-            weight = weight - tablica4
+            weight = weight - doubleRings[3]
+            quality10 -= 2
             result4 += 2
         }
-        while (weight >= tablica5) {
+        waga.push(result4)
 
-            weight = weight - tablica5
+        while (weight >= doubleRings[4] && quality5 >= 2) {
+
+            weight = weight - doubleRings[4]
+            quality5 -= 2
             result5 += 2
         }
-        while (weight >= tablica6) {
+        waga.push(result5)
 
-            weight = weight - tablica6
+        while (weight >= doubleRings[5] && quality250 >= 2) {
+
+            weight = weight - doubleRings[5]
+            quality250 -= 2
             result6 += 2
         }
-        while (weight >= tablica7) {
+        waga.push(result6)
 
-            weight = weight - tablica7
+
+        while (weight >= doubleRings[6] && quality125 >= 2) {
+
+            weight = weight - doubleRings[6]
+            quality125 -= 2
             result7 += 2
         }
+        waga.push(result7)
+
+
+
+
+
+        console.log(result1, result2, result3, result4, result5, result6, result7)
+
+        const jeden = document.querySelector('.jeden')
+        const dwa = document.querySelector('.dwa')
+        const trzy = document.querySelector('.trzy')
+        const cztery = document.querySelector('.cztery')
+        const piec = document.querySelector('.piec')
+        const szesc = document.querySelector('.szesc')
+        const siedem = document.querySelector('.siedem')
+        // const suma = document.querySelector('.suma')
+
+
+        jeden.innerHTML = result1
+        dwa.innerHTML = result2
+        trzy.innerHTML = result3
+        cztery.innerHTML = result4
+        piec.innerHTML = result5
+        szesc.innerHTML = result6
+        siedem.innerHTML = result7
+        // suma.innerHTML = suma
+
     }
-    const jeden = document.querySelector('.jeden')
-    const dwa = document.querySelector('.dwa')
-    const trzy = document.querySelector('.trzy')
-    const cztery = document.querySelector('.cztery')
-    const piec = document.querySelector('.piec')
-    const szesc = document.querySelector('.szesc')
-    const siedem = document.querySelector('.siedem')
-
-    jeden.innerHTML = result1
-    dwa.innerHTML = result2
-    trzy.innerHTML = result3
-    cztery.innerHTML = result4
-    piec.innerHTML = result5
-    szesc.innerHTML = result6
-    siedem.innerHTML = result7
-
-    console.log(result1, result2, result3, result4, result5, result6, result7, weight)
-
 }
+document.getElementById("list").addEventListener('change', function () {
+    console.log("You selected: ", this.value)
+    bar = this.value
+})
